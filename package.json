@@ -1,0 +1,23 @@
+{
+  "name": "CT Scan",
+  "version": "1.0.0",
+  "description": "Changes pinned message on how many times a person has eaten fried chicken",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jli452/CT-Scan.git"
+  },
+  "author": "hearth stoner",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jli452/CT-Scan/issues"
+  },
+  "homepage": "https://github.com/jli452/CT-Scan#readme",
+  "dependencies": {
+    "discord.io": "https://github.com/woor/discord.io/tarball/gateway_v6",
+    "winston": "^3.2.1"
+  }
+}
