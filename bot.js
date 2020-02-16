@@ -42,28 +42,30 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                 fs.writeFileSync('nums.json', data);
                 bot.sendMessage({
                     to: channelID,
-                    message: 'Added to chicken tender count. Current count: ' + currentCounter
+                    message: 'Added to chicken tender streak. Current count: ' + currentCounter
                 });
             break;
-            // !remove
+            // !reset
             case 'reset':
                 currentCounter = 0;
                 bot.sendMessage({
                     to: channelID,
-                    message: 'Reset chicken tender count.'
+                    message: 'Reset chicken tender streak.'
                 });
             break;
+            // !remove
             case 'remove':
                 currentCounter--;
                 bot.sendMessage({
                     to: channelID,
-                    message: 'Removed from chicken tender count. Current count: ' + currentCounter
+                    message: 'Removed from chicken tender streak. Current count: ' + currentCounter
                 });
             break;
+            // !streak
             case 'streak':
                 bot.sendMessage({
                     to: channelID,
-                    message: 'Currently he has eaten ' + currentCounter + " times of chicken tenders in a row."
+                    message: 'Currently he has eaten ' + currentCounter + " times of chicken tenders in a row and a total of " + totalCounter + "times."
                 });
             break;
          }
