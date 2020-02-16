@@ -1,6 +1,6 @@
 # CT-Scan
 
-Retains amount of times a person has eaten chicken tenders
+Discord bot that retains amount of times a person has eaten chicken tenders
 
 Requirements:
 
