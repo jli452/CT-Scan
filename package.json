@@ -1,6 +1,6 @@
 {
   "name": "CT Scan",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Changes pinned message on how many times a person has eaten fried chicken",
   "main": "bot.js",
   "scripts": {
