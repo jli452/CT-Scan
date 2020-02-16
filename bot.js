@@ -3,10 +3,12 @@ var logger = require('winston');
 var auth = require('./auth.json');
 var fs = require('fs');
 
-var contents = fs.readFileSync('nums.json', 'utf8');
+var contents = fs.readFileSync('ccnum.json', 'utf8');
+var contents2 = fs.readFileSync('tcnum.json', 'utf8');
 var counter = JSON.parse(contents);
+var counter2 = JSON.parse(contents2);
 var currentCounter = counter.currentCounter;
-var totalCounter = 0;
+var totalCounter = counter2.totalCounter;
 // Configure logger settings
 logger.remove(logger.transports.Console);
 logger.add(new logger.transports.Console, {
@@ -35,19 +37,30 @@ bot.on('message', function (user, userID, channelID, message, evt) {
             // !add
             case 'add':
                 currentCounter++;
-                let cc = {
+                totalCounter++;
+                let ccAdd = {
                   "currentCounter": currentCounter
                 };
-                let data = JSON.stringify(cc);
-                fs.writeFileSync('nums.json', data);
+                let dataAdd = JSON.stringify(ccAdd);
+                fs.writeFileSync('ccnum.json', dataAdd);
+                let tcAdd = {
+                  "totalCounter": totalCounter
+                };
+                let dataAdd2 = JSON.stringify(tcAdd);
+                fs.writeFileSync('tcnum.json', dataAdd2);
                 bot.sendMessage({
                     to: channelID,
-                    message: 'Added to chicken tender streak. Current count: ' + currentCounter
+                    message: 'Added to chicken tender streak. Current streak: ' + currentCounter + " / Total count: " + totalCounter
                 });
             break;
             // !reset
             case 'reset':
                 currentCounter = 0;
+                let ccRs = {
+                  "currentCounter": currentCounter
+                };
+                let dataRs = JSON.stringify(ccRs);
+                fs.writeFileSync('ccnum.json', dataRs);
                 bot.sendMessage({
                     to: channelID,
                     message: 'Reset chicken tender streak.'
@@ -56,16 +69,33 @@ bot.on('message', function (user, userID, channelID, message, evt) {
             // !remove
             case 'remove':
                 currentCounter--;
+                totalCounter--;
+                let ccRm = {
+                  "currentCounter": currentCounter
+                };
+                let dataRm = JSON.stringify(ccRm);
+                let tcRm = {
+                  "totalCounter": totalCounter
+                };
+                let dataRm2 = JSON.stringify(tcRm);
+                fs.writeFileSync('tcnum.json', dataRm2);
                 bot.sendMessage({
                     to: channelID,
-                    message: 'Removed from chicken tender streak. Current count: ' + currentCounter
+                    message: 'Removed from chicken tender streak. Current streak: ' + currentCounter + " / Total count: " + totalCounter
                 });
             break;
             // !streak
             case 'streak':
                 bot.sendMessage({
                     to: channelID,
-                    message: 'Currently he has eaten ' + currentCounter + " times of chicken tenders in a row and a total of " + totalCounter + "times."
+                    message: "Currently he has eaten chicken tenders " + currentCounter + " times in a row and a total of " + totalCounter + " times."
+                });
+            break;
+            // !help
+            case 'help':
+                bot.sendMessage({
+                    to: channelID,
+                    message: 'Commands:\n !remove- removes from streak and total\n !add- adds to streak and total\n !reset- resets streak of chicken tenders\n !streak- shows streak and total chicken tenders eaten'
                 });
             break;
          }
