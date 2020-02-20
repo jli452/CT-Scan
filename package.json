@@ -1,5 +1,5 @@
 {
-  "name": "CT Scan",
+  "name": "ctscan",
   "version": "1.0.1",
   "description": "Changes pinned message on how many times a person has eaten fried chicken",
   "main": "bot.js",
